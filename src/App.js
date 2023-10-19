@@ -2,23 +2,24 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 import axios from "axios";
+import {config} from "./config" 
 
 function App() {
   const [data, setData] = useState("");
   const [product, setProduct] = useState([]);
 
   const getDashboardData = async () => {
-    const dashData = await axios.get("http://localhost:3003/dashboard");
+    const dashData = await axios.get(`${config.api}/dashboard`);
     setData(dashData.data.message);
   };
 
   const getServiceData = async () => {
-    const serviceData = await axios.get("http://localhost:3003/service");
+    const serviceData = await axios.get(`${config.api}/service`);
     setData(serviceData.data.message);
   };
 
   const getProduct = async () => {
-    const productData = await axios.get("http://localhost:3003/products");
+    const productData = await axios.get(`${config.api}/products`);
     setProduct(productData.data);
   };
 
